@@ -1,0 +1,2 @@
+# fanfic-diary
+Fanfic
