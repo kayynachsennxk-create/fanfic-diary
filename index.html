@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="th"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>สมุดวางโครงแฟนฟิค</title>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600&family=Prompt:wght@400;600&family=Mali:wght@400;600&family=Noto+Serif+Thai:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--bg:#fafafa;--cd:#fff;--tx:#222;--mu:#808080;--ac:#7c5cff;--bd:#e4e4e7;--ok:#2e9e6b;--dg:#d64545}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#141416;--cd:#1c1c1f;--tx:#ececee;--mu:#9a9aa2;--bd:#303036;--ok:#4fc58f;--dg:#ff7b7b}}
+:root[data-theme="dark"]{--bg:#141416;--cd:#1c1c1f;--tx:#ececee;--mu:#9a9aa2;--bd:#303036;--ok:#4fc58f;--dg:#ff7b7b}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:'Noto Sans Thai','Sarabun',system-ui,sans-serif;line-height:1.65}
+main{max-width:640px;margin:0 auto;padding:20px 16px 40px}
+h1{font-size:1.35rem;font-weight:600;margin:6px 0 2px}
+h2{font-size:.8rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin:28px 0 8px;color:var(--mu)}
+.mu{color:var(--mu);font-size:.88rem}
+.cd{background:var(--cd);border:1px solid var(--bd);border-radius:8px;padding:14px;margin:10px 0}
+.cd.d{border-left:3px solid var(--ok)}
+button{font:inherit;font-size:.92rem;cursor:pointer;border:1px solid var(--ac);border-radius:6px;padding:7px 14px;background:var(--ac);color:#fff}
+button.g{background:none;color:var(--ac)}button.x{background:none;border:0;color:var(--mu);padding:4px 8px}
+button.x.c{background:var(--dg);color:#fff}
+input,textarea{width:100%;font:inherit;color:var(--tx);background:var(--bg);border:1px solid var(--bd);border-radius:6px;padding:8px 10px}
+input:focus,textarea:focus{outline:0;border-color:var(--ac)}
+textarea{min-height:76px;resize:vertical}
+label{font-weight:500;display:block;margin-bottom:3px;font-size:.88rem}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.grid .w{grid-column:1/3}
+.ck{display:inline-flex;gap:6px;align-items:center;font-size:.88rem;cursor:pointer;font-weight:400;margin:8px 0 0;color:var(--mu)}
+.ck input{width:auto;accent-color:var(--ac)}
+.sec{position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);padding:6px 0;z-index:2}
+.cover{margin:10vh auto 0;max-width:340px;text-align:center}
+.cover input{margin:5px 0;text-align:center}
+.cover button{width:100%;margin-top:8px}
+.er{min-height:1.5em;font-size:.88rem;color:var(--dg)}
+.sw{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:10px 0}.sw select{width:auto;padding:4px 8px}.sw button.sz{padding:2px 10px}
+.sw button.dot{width:22px;height:22px;padding:0;border-radius:50%;border:2px solid var(--bg)}
+.sw button.dot.on{outline:2px solid var(--tx);outline-offset:1px}
+.ph{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}.ph div{position:relative}.ph img{width:96px;height:96px;object-fit:cover;border-radius:6px;border:1px solid var(--bd);display:block}
+.ph button{position:absolute;top:2px;right:2px;padding:0 7px;background:var(--cd);border:1px solid var(--bd)}
+.up{display:inline-block;cursor:pointer;border:1px solid var(--ac);color:var(--ac);border-radius:6px;padding:7px 14px;font-size:.92rem;margin-top:8px}.up input{display:none}
+.sk{animation:sk .35s}@keyframes sk{25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+</style></head>
+<body><main id="app"></main>
+<script>
+const BASIC=[['fd','แฟนด้อม/ต้นฉบับ','เช่น ซีรีส์ เกม วงดนตรี'],['pr','คู่หลัก','ใครกับใคร'],['gn','แนวเรื่อง & โทน','โรแมนติก ดราม่า อบอุ่น ฯลฯ']];
+const PLOT=[['pt1','ช่วงต้นเรื่อง','เปิดเรื่องยังไง อะไรทำให้เรื่องเริ่ม'],['pt2','ช่วงกลางเรื่อง','ปมขัดแย้ง จุดที่ความสัมพันธ์เปลี่ยน'],['pt3','ช่วงท้ายเรื่อง','ไคลแมกซ์ & ตอนจบ'],['pt4','โน๊ตเพิ่มเติมเกี่ยวกับพล็อต','ไอเดียแทรก ฉากที่อยากใส่ สิ่งที่ยังค้างคาใจ']];
+const REL=['rel','สรุปความสัมพันธ์','พิมพ์เองได้เลย เช่น เมฆ & คลาวด์ เป็นคนรักกัน'];
+const CF=[['n1','ชื่อจริง'],['n2','ชื่อเล่น'],['sx','เพศ'],['ag','อายุ'],['ed','การศึกษา'],['ht','ส่วนสูง'],['lk','สิ่งที่ชอบ'],['dl','สิ่งที่ไม่ชอบ'],['fl','อาหารที่ชอบ'],['fd','อาหารที่ไม่ชอบ'],['pe','นิสัย / บุคลิก','w'],['nt','โน้ตเพิ่มเติม (ภูมิหลัง ความลับ ฯลฯ)','w']];
+const TH=[['ม่วง','#7c5cff'],['ชมพู','#e0569a'],['เขียว','#3f9b7a'],['ฟ้า','#3b82f6'],['ส้ม','#e8833a'],['เทา','#6b7280']];
+let db=[],cur=TH[0][1];
+try{db=JSON.parse(localStorage.getItem('fic-v1')||'[]')}catch(e){}
+try{cur=localStorage.getItem('fic-th')||cur}catch(e){}
+document.documentElement.style.setProperty('--ac',cur);
+const FN=[['ปกติ',"'Noto Sans Thai','Sarabun',system-ui,sans-serif"],['Sarabun',"'Sarabun',sans-serif"],['Prompt',"'Prompt',sans-serif"],['ลายมือ (Mali)',"'Mali',cursive"],['เซอริฟ',"'Noto Serif Thai',serif"]];
+let fo={i:0,s:16};try{fo=JSON.parse(localStorage.getItem('fic-font'))||fo}catch(e){}
+if(!FN[fo.i])fo={i:0,s:16};
+const applyF=()=>{document.body.style.fontFamily=FN[fo.i][1];document.documentElement.style.fontSize=fo.s+'px';try{localStorage.setItem('fic-font',JSON.stringify(fo))}catch(e){}};applyF();
+let DL=null;(async()=>{try{DL=await window.claude.use('downloads')}catch(e){}const b=document.getElementById('bdl');if(DL&&b)b.style.display='';})();
+db.forEach(s=>{s.f=s.f||{};s.ch=s.ch||[]});
+const save=()=>{try{localStorage.setItem('fic-v1',JSON.stringify(db));return true}catch(e){return false}};
+const shrink=(file,max,type,q)=>new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{const k=Math.min(1,max/Math.max(im.width,im.height)),c=document.createElement('canvas');c.width=Math.round(im.width*k);c.height=Math.round(im.height*k);c.getContext('2d').drawImage(im,0,0,c.width,c.height);res(c.toDataURL(type,q))};im.onerror=rej;im.src=r.result};r.onerror=rej;r.readAsDataURL(file)});
+const $=s=>document.querySelector(s),A=$('#app');
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const newCh=()=>({id:String(Date.now()+Math.random()),v:{}});
+const H=s=>{let h=5381;for(const c of 'fic|'+s)h=(h*33)^c.charCodeAt(0);return String(h>>>0)};
+const PW=()=>{try{return localStorage.getItem('fic-pw')}catch(e){return null}};
+const setPW=v=>{try{localStorage.setItem('fic-pw',H(v))}catch(e){}};
+const isOk=()=>{try{return sessionStorage.getItem('fic-ok')==='1'}catch(e){return false}};
+const setOk=v=>{try{v?sessionStorage.setItem('fic-ok','1'):sessionStorage.removeItem('fic-ok')}catch(e){}};
+function twoStep(btn,fn,lbl='ลบ',ask='กดอีกครั้งเพื่อลบ'){let t;btn.onclick=()=>{if(btn.classList.contains('c')){clearTimeout(t);fn();return;}
+ btn.classList.add('c');btn.textContent=ask;t=setTimeout(()=>{btn.classList.remove('c');btn.textContent=lbl;},3000);};}
+const swHTML=()=>`<div class="sw"><span class="mu">สีธีม</span>${TH.map(([n,c])=>`<button class="dot ${c===cur?'on':''}" data-c="${c}" title="${n}" style="background:${c}"></button>`).join('')}</div><div class="sw"><span class="mu">ฟอนต์</span><select id="fs">${FN.map((f,j)=>`<option value="${j}" ${j===fo.i?'selected':''}>${f[0]}</option>`).join('')}</select><button class="g sz" id="fm">A−</button><button class="g sz" id="fp">A+</button></div>`;
+function swBind(){A.querySelectorAll('.dot').forEach(b=>b.onclick=()=>{cur=b.dataset.c;document.documentElement.style.setProperty('--ac',cur);try{localStorage.setItem('fic-th',cur)}catch(e){}
+ A.querySelectorAll('.dot').forEach(d=>d.classList.toggle('on',d===b));});
+ $('#fs').onchange=e=>{fo.i=+e.target.value;applyF();};
+ $('#fm').onclick=()=>{fo.s=Math.max(13,fo.s-1);applyF();};
+ $('#fp').onclick=()=>{fo.s=Math.min(24,fo.s+1);applyF();};}
+
+function gate(){
+ if(PW()&&isOk())return home();
+ const first=!PW();
+ A.innerHTML=`<div class="cover"><h1>สมุดแฟนฟิค</h1><p class="mu">${first?'ตั้งรหัสผ่านเพื่อเริ่มใช้งาน':'ใส่รหัสผ่านเพื่อเปิดสมุด'}</p>
+ <input id="p1" type="password" placeholder="รหัสผ่าน" autocomplete="off">${first?'<input id="p2" type="password" placeholder="ยืนยันรหัสผ่าน" autocomplete="off">':''}
+ <div class="er" id="er"></div><button id="go">${first?'ตั้งรหัส & เปิดสมุด':'เปิดสมุด'}</button>
+ ${first?'<p class="mu" style="margin-top:16px">สมุดและรหัสเก็บไว้ในเครื่องของคุณเท่านั้น ส่งลิงก์ให้เพื่อนได้ เขาจะได้สมุดเปล่าของตัวเอง</p>':'<div style="margin-top:14px"><button class="x" id="fg" style="width:auto">ลืมรหัส? รีเซ็ตสมุด</button></div>'}${swHTML()}</div>`;
+ swBind();
+ const er=m=>{$('#er').textContent=m;const c=$('.cover');c.classList.remove('sk');void c.offsetWidth;c.classList.add('sk');};
+ const go=()=>{const a=$('#p1').value;
+  if(first){if(a.length<4)return er('รหัสต้องมีอย่างน้อย 4 ตัว');if(a!==$('#p2').value)return er('รหัสสองช่องไม่ตรงกัน');setPW(a);}
+  else if(H(a)!==PW())return er('รหัสไม่ถูกต้อง');
+  setOk(true);home();};
+ $('#go').onclick=go;A.querySelectorAll('input[type=password]').forEach(i=>i.onkeydown=e=>{if(e.key==='Enter')go();});
+ if(!first)twoStep($('#fg'),()=>{try{localStorage.removeItem('fic-pw');localStorage.removeItem('fic-v1')}catch(e){}db=[];setOk(false);gate();},'ลืมรหัส? รีเซ็ตสมุด','กดอีกครั้ง (เรื่องทั้งหมดจะถูกลบ)');}
+
+function home(){
+ A.innerHTML=`<div class="row"><h1 style="flex:1">สมุดวางโครงแฟนฟิค</h1><button class="g" id="lk">ล็อก</button></div><div class="mu">ตอบทีละข้อ ติ๊กเมื่อทำเรื่องนั้นเสร็จแล้ว</div>${swHTML()}
+ <h2>เรื่องของฉัน (${db.length})</h2><div id="ls"></div><button id="nw">+ เริ่มเรื่องใหม่</button>
+ <h2>สำรองข้อมูล</h2><div class="cd"><div class="row"><button class="g" id="bdl" style="${DL?'':'display:none'}">ดาวน์โหลดไฟล์สำรอง</button><button class="g" id="bcp">คัดลอกข้อมูลสำรอง</button></div><div class="mu" style="margin-top:10px">นำข้อมูลกลับเข้ามา (เรื่องที่ซ้ำกันจะถูกแทนที่ด้วยข้อมูลจากไฟล์)</div><input type="file" id="bf" accept=".json,application/json" style="margin-top:6px"><textarea id="bt" placeholder="หรือวางข้อมูลสำรองที่คัดลอกไว้ตรงนี้" style="margin-top:6px;min-height:50px"></textarea><div class="row" style="margin-top:6px"><button id="bi">นำเข้า</button><span class="mu" id="bm"></span></div></div>
+ <h2>ตั้งค่า</h2><div class="cd"><button class="g" id="cw">เปลี่ยนรหัสผ่าน</button><div id="cp" style="display:none;margin-top:10px"><input id="np" type="password" placeholder="รหัสใหม่ (อย่างน้อย 4 ตัว)" autocomplete="off"><div class="row" style="margin-top:8px"><button id="sp">บันทึก</button><span class="mu" id="pm"></span></div></div></div>`;
+ swBind();
+ $('#ls').innerHTML=db.length?db.map(s=>`<div class="cd ${s.done?'d':''}" data-id="${s.id}"><div class="row"><b style="flex:1;cursor:pointer" class="op">${esc(s.title||'(ยังไม่มีชื่อ)')}</b><button class="x dl">ลบ</button></div><div class="mu">${esc(s.f.fd?.v||'')}</div><label class="ck"><input type="checkbox" ${s.done?'checked':''}> เรื่องนี้ทำแล้ว</label></div>`).join(''):'<div class="mu">ยังไม่มีเรื่อง กดปุ่มด้านล่างเพื่อเริ่มได้เลย</div>';
+ A.querySelectorAll('.cd[data-id]').forEach(c=>{const s=db.find(x=>x.id==c.dataset.id);
+  c.querySelector('.op').onclick=()=>edit(s.id);
+  twoStep(c.querySelector('.dl'),()=>{db=db.filter(x=>x!==s);save();home();});
+  c.querySelector('input').onchange=e=>{s.done=e.target.checked;c.classList.toggle('d',s.done);save();};});
+ $('#nw').onclick=()=>{const s={id:String(Date.now()),title:'',f:{},ch:[newCh(),newCh()],done:false};db.unshift(s);save();edit(s.id);};
+ $('#lk').onclick=()=>{setOk(false);gate();};
+ const bm=m=>{$('#bm').textContent=m;};
+ const dump=()=>JSON.stringify({app:'fic',v:1,stories:db});
+ const imp=t=>{try{const a=JSON.parse(t).stories;if(!Array.isArray(a))throw 0;a.forEach(x=>{x.f=x.f||{};x.ch=x.ch||[];const i=db.findIndex(y=>y.id==x.id);i<0?db.push(x):db[i]=x;});save();home();}catch(e){bm('ข้อมูลสำรองไม่ถูกต้อง');}};
+ $('#bdl').onclick=()=>{DL.save({filename:'fanfic-backup.json',data:dump()}).then(()=>bm('บันทึกไฟล์แล้ว')).catch(e=>bm(e&&e.code==='declined'?'ยกเลิกแล้ว':'บันทึกไฟล์ไม่ได้ ลองคัดลอกข้อมูลแทน'));};
+ $('#bcp').onclick=()=>{try{navigator.clipboard.writeText(dump()).then(()=>bm('คัดลอกแล้ว วางเก็บไว้ในโน้ตได้'),()=>bm('คัดลอกไม่ได้'));}catch(e){bm('คัดลอกไม่ได้');}};
+ $('#bf').onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>imp(r.result);r.readAsText(f);};
+ $('#bi').onclick=()=>{const t=$('#bt').value.trim();t?imp(t):bm('ยังไม่ได้วางข้อมูล');};
+ $('#cw').onclick=()=>{const b=$('#cp');b.style.display=b.style.display==='none'?'block':'none';};
+ $('#sp').onclick=()=>{const v=$('#np').value;if(v.length<4){$('#pm').textContent='อย่างน้อย 4 ตัว';return;}setPW(v);$('#np').value='';$('#pm').textContent='เปลี่ยนรหัสแล้ว';};}
+
+const qb=([k,l,p],s)=>`<div class="cd"><label>${l}</label><textarea data-k="${k}" placeholder="${esc(p)}">${esc(s.f[k]?.v)}</textarea></div>`;
+const cb=(c,i)=>`<div class="cd" data-i="${i}"><div class="row"><b style="flex:1">ตัวละครที่ ${i+1}${c.v.n2?' · '+esc(c.v.n2):''}</b><button class="x rm">ลบ</button></div><div class="ph">${c.ph?`<div><img src="${c.ph}" alt=""><button class="x pd">✕</button></div>`:''}</div><label class="up"><span>${c.ph?'เปลี่ยนรูป':'+ รูปตัวละคร'}</span><input type="file" class="cf" accept="image/*"></label><div class="grid">${CF.map(([k,l,w])=>`<div class="${w||''}"><label>${l}</label>${w?`<textarea data-f="${k}" style="min-height:60px">${esc(c.v[k])}</textarea>`:`<input data-f="${k}" value="${esc(c.v[k])}">`}</div>`).join('')}</div></div>`;
+
+function edit(id){
+ const s=db.find(x=>x.id==id);if(!s)return home();
+ A.innerHTML=`<div class="sec"><div class="row"><button class="g" id="bk">← กลับ</button><button class="g" id="cp">คัดลอกพล็อต</button></div></div>
+ <div class="cd ${s.done?'d':''}" id="tc"><label>ชื่อเรื่อง</label><input id="ti" value="${esc(s.title)}" placeholder="ยังไม่ตั้งชื่อก็ได้"><label class="ck"><input type="checkbox" id="dn" ${s.done?'checked':''}> เรื่องนี้ทำแล้ว</label></div>
+ <h2>ข้อมูลพื้นฐาน</h2>${BASIC.map(q=>qb(q,s)).join('')}
+ <h2>ตัวละคร</h2>${s.ch.map(cb).join('')}<button id="ac">+ เพิ่มตัวละคร</button>
+ <h2>ความสัมพันธ์</h2>${qb(REL,s)}
+ <h2>พล็อตคร่าวๆ</h2>${PLOT.map(q=>qb(q,s)).join('')}
+ <h2>รูปประกอบ</h2><div class="cd"><div class="ph" id="gl"></div><label class="up"><span>+ เพิ่มรูป</span><input type="file" id="gf" accept="image/*" multiple></label> <span class="mu" id="gm"></span></div>`;
+ $('#bk').onclick=home;
+ s.im=s.im||[];
+ const gm=m=>{$('#gm').textContent=m;};
+ const gl=()=>{$('#gl').innerHTML=s.im.map((d,i)=>`<div data-i="${i}"><img src="${d}" alt=""><button class="x">✕</button></div>`).join('');
+  $('#gl').querySelectorAll('div').forEach(dv=>twoStep(dv.querySelector('button'),()=>{s.im.splice(+dv.dataset.i,1);save();gl();},'✕','ลบ?'));};gl();
+ $('#gf').onchange=e=>{const fs=[...e.target.files];e.target.value='';gm('กำลังเพิ่มรูป...');
+  fs.reduce((p,f)=>p.then(()=>shrink(f,800,'image/jpeg',.7).then(d=>{s.im.push(d);if(!save()){s.im.pop();gm('พื้นที่เก็บเต็ม ลบรูปเก่าก่อน');throw 0;}})),Promise.resolve()).then(()=>{gm('');gl();}).catch(()=>{gl();});};
+ $('#ti').oninput=e=>{s.title=e.target.value;save();};
+ $('#dn').onchange=e=>{s.done=e.target.checked;$('#tc').classList.toggle('d',s.done);save();};
+ A.querySelectorAll('textarea[data-k]').forEach(t=>t.oninput=()=>{s.f[t.dataset.k]={v:t.value};save();});
+ A.querySelectorAll('.cd[data-i]').forEach(q=>{const ch=s.ch[+q.dataset.i];
+  q.querySelectorAll('[data-f]').forEach(el=>el.oninput=()=>{ch.v[el.dataset.f]=el.value;save();});
+  twoStep(q.querySelector('.rm'),()=>{s.ch=s.ch.filter(c=>c!==ch);save();edit(id);});
+  const pd=q.querySelector('.pd');if(pd)twoStep(pd,()=>{delete ch.ph;save();edit(id);},'✕','ลบ?');
+  q.querySelector('.cf').onchange=e=>{const f=e.target.files[0],sp=e.target.previousSibling;if(!f)return;shrink(f,600,'image/jpeg',.7).then(d=>{const o=ch.ph;ch.ph=d;if(save())edit(id);else{ch.ph=o;sp.textContent='พื้นที่เก็บเต็ม ลบรูปเก่าก่อน';}}).catch(()=>{sp.textContent='เปิดรูปนี้ไม่ได้';});};});
+ $('#ac').onclick=()=>{s.ch.push(newCh());save();edit(id);window.scrollTo(0,document.body.scrollHeight*0.45);};
+ $('#cp').onclick=e=>{const g=k=>s.f[k]?.v||'-';
+  const t=`# ${s.title||'(ไม่มีชื่อ)'}\n\n`+BASIC.map(q=>`${q[1]}: ${g(q[0])}`).join('\n')+'\n\n## ตัวละคร\n'+s.ch.map((c,i)=>`${i+1}. `+CF.map(([k,l])=>`${l}: ${c.v[k]||'-'}`).join(' | ')).join('\n')+`\n\n## ความสัมพันธ์\n${g('rel')}\n\n## พล็อต\n`+PLOT.map(q=>`${q[1]}: ${g(q[0])}`).join('\n');
+  let ok=true;try{navigator.clipboard.writeText(t).catch(()=>{})}catch(x){ok=false}
+  e.target.textContent=ok?'คัดลอกแล้ว ✓':'คัดลอกไม่ได้';setTimeout(()=>e.target.textContent='คัดลอกพล็อต',2000);};}
+gate();
+</script></body></html>
